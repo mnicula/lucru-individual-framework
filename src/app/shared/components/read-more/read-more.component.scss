@@ -1,0 +1,247 @@
+@charset "utf-8";
+@import "src/styles";
+
+
+h2:empty, p:empty.comm, img:empty.image, button:empty, h1:empty {
+  animation: loading 1.7s infinite linear;
+  background: #dedfe1;
+  background-image: -webkit-linear-gradient(to right, #dedfe1 0%, #f2f3f5 20%, #dedfe1 40%, #dedfe1 100%);
+  background-image: linear-gradient(to right, #dedfe1 0%, #f2f3f5 20%, #dedfe1 40%, #dedfe1 100%);
+  background-repeat: no-repeat;
+}
+
+h2:empty {
+  height: 38px;
+  width: 200px;
+}
+
+p:empty.comm {
+  width: 560px;
+  float: right;
+  height: 500px;
+}
+
+h1:empty {
+  width: 49.6%;
+  height: 54px;
+  position: relative;
+  top: 446px;
+}
+
+@keyframes loading {
+  0% {
+    background-position: -100px;
+  }
+
+  100% {
+    background-position: 200px;
+  }
+}
+
+.article {
+  width: 100%;
+  background-color: $white;
+  @include media-breakpoint-down(sm) {
+    padding-top: 70px;
+  }
+
+  &.padding {
+    padding-top: 100px;
+  }
+
+  .back {
+    padding: 60px 0;
+  }
+
+  .title {
+    text-align: center;
+    padding: 60px 0;
+
+    @include media-breakpoint-down(sm) {
+      padding: 30px 0;
+    }
+
+    h2 {
+      color: $black;
+      font-weight: bold;
+      text-align: left;
+
+      @include media-breakpoint-down(lg) {
+        font-size: 32px;
+      }
+    }
+  }
+
+  .section {
+    line-height: 30px;
+    width: 100%;
+    height: 100%;
+    min-height: 550px;
+
+    img {
+      width: 500px;
+      height: 400px;
+      float: left;
+      margin: 0 50px 30px 0;
+
+      &.second {
+        width: 500px;
+        height: 400px;
+        float: right;
+        margin: 30px 0 0 50px;
+      }
+    }
+
+    .description {
+      text-align: justify;
+      font-size: 16px;
+    }
+  }
+
+
+  .comments {
+    margin-top: 50px;
+    padding-bottom: 50px;
+    width: 100%;
+    background-color: $white;
+    height: 100%;
+    box-shadow: 0 6px 5px -4px rgba(0, 0, 0, 0.15);
+
+    .comment {
+      box-shadow: 7px 8px 13px 2px rgba(0, 0, 0, 0.15);
+      border-radius: 50px;
+      height: 100%;
+      width: 100%;
+      background-color: $white;
+
+      .image {
+        img {
+          width: 400px;
+          height: 500px;
+        }
+      }
+
+      .text {
+        width: 100%;
+        height: 100%;
+        margin: auto;
+
+        p {
+          font-size: 20px;
+        }
+      }
+
+      .title {
+        text-align: center;
+        padding: 60px 0;
+
+        @include media-breakpoint-down(sm) {
+          padding: 30px 0;
+        }
+
+        h2 {
+          color: $black;
+          font-weight: bold;
+          text-align: center;
+
+          @include media-breakpoint-down(lg) {
+            font-size: 32px;
+          }
+        }
+      }
+
+    }
+
+    .user-comment {
+      width: 100%;
+      height: 100%;
+      padding: 20px 50px;
+      text-align: left;
+
+      .block {
+        background-color: #F8F8F8;
+        min-height: 70px;
+        border-radius: 20px;
+        margin: 0;
+        cursor: pointer;
+
+        &:hover{
+          button{
+            display: block;
+          }
+        }
+
+        p{
+          padding: 20px;
+          font-size: 14px;
+        }
+        button{
+          display: none;
+          margin: auto 20px;
+          width: 30px;
+          height: 30px;
+          background-color: red;
+          border-radius: 10px;
+          cursor: pointer;
+          opacity: 0.7;
+          outline: none;
+          text-align: center;
+
+
+          i {
+            color: $white;
+            padding-top: 5px;
+          }
+        }
+      }
+
+      .info {
+        span {
+          font-size: 10px;
+          color: #808080;
+        }
+
+        a{
+          color: #808080;
+          cursor: pointer;
+          font-size: 13px;
+          font-weight: 500;
+
+          &:first-child{
+            padding-right: 30px;
+          }
+
+          &:hover{
+            color: #727bd1;
+          }
+        }
+      }
+
+    }
+
+    .create-comment {
+      width: 100%;
+      height: 100%;
+      padding: 20px 50px;
+
+      .form {
+        width: 100%;
+        height: 100%;
+
+        .form-control {
+          font-size: 14px;
+          min-height: 50px;
+          border-radius: 50px;
+          padding: 0 25px;
+
+          &.text {
+            border-radius: 30px;
+          }
+        }
+
+      }
+    }
+  }
+
+}
+

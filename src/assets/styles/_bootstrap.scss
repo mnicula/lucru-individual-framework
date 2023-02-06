@@ -1,0 +1,262 @@
+//Carousel
+.carousel {
+  position: relative;
+  top: -85px;
+  height: 100%;
+  width: 87%;
+  left: 60px;
+  padding-bottom: 100px;
+
+  @media screen and (max-width: 768px) {
+    padding-bottom: 0;
+  }
+}
+
+.carousel.pointer-event {
+  touch-action: pan-y;
+}
+
+.carousel-inner {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+
+.carousel-item {
+  position: relative;
+  display: none;
+  float: left;
+  width: 100%;
+  margin-right: -100%;
+  backface-visibility: hidden;
+}
+
+.carousel-item.active,
+.carousel-item-next,
+.carousel-item-prev {
+  display: block;
+}
+
+.carousel-item-next:not(.carousel-item-left),
+.active.carousel-item-right {
+  transform: translateX(100%);
+}
+
+.carousel-item-prev:not(.carousel-item-right),
+.active.carousel-item-left {
+  transform: translateX(-100%);
+}
+
+
+//
+// Alternate transitions
+//
+
+.carousel-fade {
+  .carousel-item {
+    opacity: 0;
+    transition-property: opacity;
+    transform: none;
+  }
+
+  .carousel-item.active,
+  .carousel-item-next.carousel-item-left,
+  .carousel-item-prev.carousel-item-right {
+    z-index: 1;
+    opacity: 1;
+  }
+
+  .active.carousel-item-left,
+  .active.carousel-item-right {
+    z-index: 0;
+    opacity: 0;
+  }
+}
+
+
+//
+// Left/right controls for nav
+//
+
+.carousel-control-prev,
+.carousel-control-next {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  z-index: 1;
+  // Use flex for alignment (1-3)
+  display: flex; // 1. allow flex styles
+  align-items: center; // 2. vertically center contents
+  justify-content: center; // 3. horizontally center contents
+  width: 8%;
+  text-align: center;
+  opacity: 1;
+
+}
+
+.carousel-control-prev {
+  @media screen and (max-width: 992px) {
+    top: 0;
+  }
+  left: -8%;
+  top: 85px;
+
+}
+
+.carousel-control-next {
+  @media screen and (max-width: 992px) {
+    top: 0;
+  }
+  right: -8%;
+  top: 85px;
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  width: 30px;
+  height: 50px;
+  display: inline-block;
+  background: no-repeat 50% / 100% 100%;
+}
+
+.carousel-indicators {
+  @media screen and (max-width: 768px) {
+    display: none;
+  }
+  @media screen and (max-width: 991px) {
+    top: 26.5em;
+  }
+  @media screen and (max-width: 1200px) {
+    top: 36em;
+  }
+  position: relative;
+  top: 40.5em;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  margin: 0;
+  z-index: 15;
+  display: flex;
+  justify-content: space-between;
+  padding-left: 0; // override <ol> default
+  // Use the .carousel-control's width as margin so we don't overlay those
+  list-style: none;
+
+  img {
+    box-sizing: content-box;
+    flex: 0 1 auto;
+    width: 188.6px;
+    height: 100px;
+
+    @media screen and (max-width: 1200px) {
+      width: 157.6px;
+    }
+    @media screen and (max-width: 991px) {
+      width: 115.6px;
+      height: 75px;
+    }
+    text-indent: -999px;
+    cursor: pointer;
+    background-clip: padding-box;
+
+    &:first-child {
+      margin-left: 0;
+    }
+
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+
+  .active {
+    opacity: 1;
+  }
+}
+
+.carousel-caption {
+  position: absolute;
+  bottom: 20px;
+  z-index: 10;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  text-align: center;
+}
+
+
+//Pagination
+.pagination {
+  display: flex;
+}
+
+.page-link {
+  position: relative;
+  display: block;
+  border: none !important;
+  background: transparent !important;
+  color: #000000;
+
+  &.active{
+    color: #727bd1;
+  }
+
+  &.previous, &.next {
+    position: relative;
+    top: 25px;
+    font-size: 14px;
+    color: #727bd1 !important;
+
+    i {
+      position: relative;
+      top: -29px;
+      font-size: 30px;
+    }
+  }
+
+  &.previous {
+    left: 50px !important;
+
+    i {
+      left: -50px !important;
+    }
+  }
+
+  &.next {
+    right: 30px !important;
+
+    i {
+      right: -30px !important;
+    }
+  }
+
+  &:hover {
+    z-index: 2;
+    color: #727bd1;
+    text-decoration: none;
+  }
+}
+
+.page-item {
+  cursor: pointer;
+
+  .page-link {
+    z-index: 3;
+    color: black;
+    outline: none;
+
+    &.active {
+      color: #727bd1;
+    }
+
+    &:focus {
+      box-shadow: none;
+
+    }
+  }
+
+  &.disabled .page-link {
+    pointer-events: none;
+    // Opinionated: remove the "hand" cursor set previously for .page-link
+    cursor: auto;
+  }
+}
+

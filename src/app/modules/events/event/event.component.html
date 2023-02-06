@@ -1,0 +1,63 @@
+<app-header></app-header>
+<div class="events" *ngIf="pastEvents && upcomingEvents">
+  <div class="container">
+    <div class="row no-gutters">
+      <div class="title">
+        <h2>Events</h2>
+      </div>
+    </div>
+  </div>
+
+  <div class="image-event">
+    <img src="../../../../assets/images/events.svg" alt="">
+  </div>
+
+  <div class="upcoming-event">
+    <div class="container">
+      <div class="event-title">
+        <h4>UPCOMING EVENTS</h4>
+      </div>
+
+      <div class="row no-gutters">
+        <div class="col-lg-6 col-12 image" *ngIf="upcomingEvents?.length > 0">
+          <img [src]="upcomingEvents[0]?.imageUrl" alt="">
+        </div>
+
+
+        <div class="col-lg-6 col-12 image" *ngIf="upcomingEvents?.length === 0">
+          <img src="../../../../assets/images/default-image.jpg" alt="">
+        </div>
+
+        <div class="col-lg-6 col-12 content">
+          <h4 *ngIf="upcomingEvents[0]?.title">{{upcomingEvents[0]?.title}}</h4>
+          <h4 *ngIf="!upcomingEvents[0]?.title">No information found about upcoming events!</h4>
+          <p [id]="upcomingEvents[0]?.id"><span></span>{{upcomingEvents[0]?.description}}</p>
+          <ul>
+            <li><span>Date:</span> {{upcomingEvents[0]?.startTime | date: 'dd-MM-yyyy HH:mm'}}</li>
+            <li><span>location:</span> {{upcomingEvents[0]?.location}}</li>
+            <li><span>fee:</span> {{upcomingEvents[0]?.participationFee}}</li>
+          </ul>
+
+          <button class="btn-border" [class.disabled]="upcomingEvents?.length === 0" [disabled]="upcomingEvents?.length === 0" routerLink="./payment/{{upcomingEvents[0]?.id}}">Pay here</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="post-events">
+      <div class="row no-gutters justify-content-center">
+        <h4 class="text-uppercase">Past Events</h4>
+      </div>
+
+      <div class="row no-gutters float-left p-0">
+        <app-carousel [slides]="pastEvents"></app-carousel>
+      </div>
+    </div>
+  </div>
+
+  <div class="images">
+    <img src="../../../../assets/images/article1.svg" alt="">
+    <img class="float-right" src="../../../../assets/images/article2.svg" alt="">
+  </div>
+</div>

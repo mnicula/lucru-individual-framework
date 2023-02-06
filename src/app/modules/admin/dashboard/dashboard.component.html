@@ -1,0 +1,229 @@
+<div class="dashboard" [ngClass]="{'open': isOpen}" *ngIf="dashboardData; else skeleton">
+  <div class="row">
+    <div class="col-lg-4 col-md-6 col-sm-6 icons">
+      <div class="card card-stats categories">
+        <div class="card-body ">
+          <div class="row">
+            <div class="col-6">
+              <div class="image articles">
+                <img src="../../../../assets/images/article.jpg" alt="">
+              </div>
+            </div>
+            <div class="col-6">
+              <div class="numbers" [ngClass]="{'open': isOpen}">
+                <p class="card-category">Total Articles</p>
+                <p class="card-title">{{dashboardData?.articles}}<p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <hr>
+        <div class="stats view row no-gutters justify-content-center" routerLink="../articles">
+          <p>View Details</p>
+          <i class="fas fa-arrow-right"></i>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-4 col-md-6 col-sm-6 icons">
+      <div class="card card-stats categories">
+        <div class="card-body">
+          <div class="row no-gutters">
+            <div class="col-6 col-md-6">
+              <div class="image event">
+                <img src="../../../../assets/images/events-no.svg" alt="">
+              </div>
+            </div>
+            <div class="col-6 col-md-6">
+              <div class="numbers" [ngClass]="{'open': isOpen}">
+                <p class="card-category">Total Events</p>
+                <p class="card-title">{{dashboardData?.events}}
+                <p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <hr>
+        <div class="stats view row no-gutters justify-content-center" routerLink="../events">
+          <p>View Details</p>
+          <i class="fas fa-arrow-right"></i>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-4 col-md-6 col-sm-6 icons">
+      <div class="card card-stats categories">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-5 col-md-4">
+              <div class="image booking">
+                <img src="../../../../assets/images/booking.svg" alt="">
+              </div>
+            </div>
+            <div class="col-7 col-md-8">
+              <div class="numbers" [ngClass]="{'open': isOpen}">
+                <p class="card-category">Total Booking</p>
+                <p class="card-title">{{dashboardData?.bookings}}
+                <p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <hr>
+        <div class="stats view row no-gutters justify-content-center" routerLink="../booking">
+          <p>View Details</p>
+          <i class="fas fa-arrow-right"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card ">
+        <div class="card-header">
+          <h5 class="card-title text-left">Total amount of bookings per users last 6 month</h5>
+          <p class="card-category text-left">last performance</p>
+        </div>
+        <div class="card-body ">
+          <p-chart type="bar" [data]="amount" width="400w" height="350w"></p-chart>
+        </div>
+        <div class="card-footer ">
+          <hr>
+          <div class="stats">
+            <i class="fa fa-history"></i> Updated 3 minutes ago
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-4">
+      <div class="card ">
+        <div class="card-header ">
+          <h5 class="card-title">Events and articles</h5>
+          <p class="card-category">Last Campaign Performance</p>
+        </div>
+        <div class="card-body ">
+          <p-chart type="pie" [data]="pie" width="300w" height="320w"></p-chart>
+        </div>
+        <div class="card-footer ">
+          <hr>
+          <div class="stats">
+            <i class="fas fa-calculator"></i> Events and articles
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-8">
+      <div class="card card-chart">
+        <div class="card-header">
+          <h5 class="card-title">Total sum of users registered per month last 6 month</h5>
+          <p class="card-category">Last performance</p>
+        </div>
+        <div class="card-body">
+          <p-chart type="bar" [data]="sum" width="300w" height="325w"></p-chart>
+        </div>
+        <div class="card-footer">
+          <hr/>
+          <div class="card-stats">
+            <i class="fa fa-check"></i> Data information certified
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #skeleton>
+  <div class="dashboard">
+    <div class="row">
+      <div class="col-lg-4 col-md-6 col-sm-6 icons">
+        <div class="card card-stats categories">
+          <div class="card-body ">
+            <div class="row width justify-content-around">
+              <div class="col-5 main">
+
+              </div>
+
+              <div class="col-5 main">
+
+              </div>
+            </div>
+            <p class="empty"></p>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-6 col-sm-6 icons">
+        <div class="card card-stats categories">
+          <div class="card-body">
+            <div class="row width justify-content-around">
+              <div class="col-5 main">
+
+              </div>
+
+              <div class="col-5 main">
+
+              </div>
+            </div>
+            <p class="empty"></p>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-6 col-sm-6 icons">
+        <div class="card card-stats categories">
+          <div class="card-body">
+            <div class="row width justify-content-around">
+              <div class="col-5 main">
+
+              </div>
+
+              <div class="col-5 main">
+
+              </div>
+            </div>
+            <p class="empty"></p>
+          </div>
+
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card ">
+          <div class="card-header">
+            <h5 class="card-title text-left"></h5>
+            <p class="empty"></p>
+          </div>
+          <div class="card-body ">
+            <div class="stats">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-4">
+        <div class="card ">
+          <div class="card-header ">
+            <h5 class="card-title"></h5>
+            <p class="empty"></p>
+          </div>
+          <div class="card-body ">
+            <div class="stats">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-8">
+        <div class="card card-chart">
+          <div class="card-header">
+            <h5 class="card-title"></h5>
+            <p class="empty"></p>
+          </div>
+          <div class="card-body">
+            <div class="stats">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>

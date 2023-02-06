@@ -1,0 +1,88 @@
+<div class="create">
+  <div class="row no-gutters justify-content-center">
+    <div class="col-md-10">
+      <div class="card margin">
+        <div class="card-header">
+          <div class="back">
+            <button class="btn-form creation" routerLink="./../">
+              <i class="fas fa-chevron-left"></i>
+              Back
+            </button>
+          </div>
+        </div>
+
+        <div class="card-body">
+          <form class="form" [formGroup]="form">
+            <div class="row no-gutters">
+              <div class="col-6 image-picker">
+                <div class="image" *ngIf="fileData">
+                  <img *ngIf="fileData" [src]="previewUrl"/>
+                </div>
+
+                <div class="image" *ngIf="!fileData">
+                  <img src="../../../../../assets/images/default-image.jpg"/>
+                </div>
+
+                <div class="row no-gutters justify-content-end">
+                  <div class="data col-8">
+                    <p *ngIf="fileData">{{fileData.name}}</p>
+                  </div>
+
+
+                  <div class="col-4 text-right">
+                    <div class="choose-file" *ngIf="!fileData">
+                      <span><i class="fas fa-image"></i></span>
+                      <input name="file" accept="image/*" type="file" (change)="fileProgress($event)"/>
+                    </div>
+                    <button class="cancel" *ngIf="fileData" (click)="onCancel()"><i class="fas fa-times"></i></button>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-6 add">
+                <div class="form-group">
+                  <input type="text" formControlName="title" placeholder="Type title of the article"
+                         class="form-control">
+                </div>
+
+                <div class="form-group">
+                          <textarea placeholder="Write the description here..."
+                                    class="form-control text pt-4"
+                                    formControlName="description"
+                                    rows="7"></textarea>
+                </div>
+
+                <div class="row no-gutters justify-content-between">
+                  <div class="start-time">
+                    <p-calendar class="first" showTime="true" [showSeconds]="false" (onSelect)="changeFormatStart($event)" placeholder="Start Date" formControlName="startTime"></p-calendar>
+                  </div>
+
+                  <div class="end-time">
+                    <p-calendar placeholder="End Date" showTime="true" [showSeconds]="false" (onSelect)="changeFormatEnd($event)" formControlName="endTime"></p-calendar>
+                  </div>
+                </div>
+
+                <div class="row location no-gutters justify-content-between mt-3">
+                  <div class="form-group">
+                    <input type="text" formControlName="participationFee" (keypress)="onNumberType($event)"
+                           class="form-control">
+                  </div>
+
+                  <div class="form-group">
+                    <input type="text" formControlName="location" placeholder="Location"
+                           class="form-control">
+                  </div>
+                </div>
+
+                <div class="button-create">
+                  <button [disabled]="(!(form.valid && fileData))" (click)="onSubmit()">Create</button>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<p-toast position="bottom-right"></p-toast>

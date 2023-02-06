@@ -1,0 +1,61 @@
+<p-sidebar [(visible)]="display" position="right" [showCloseIcon]="false">
+  <div class="sidebar">
+    <div class="user" *ngIf="isAuthenticated">
+      <img src="../../../../assets/images/user1.png" alt="">
+      <p>{{currentUser.username}}</p>
+    </div>
+
+    <div class="row no-gutters">
+      <div class="route">
+        <ul>
+          <li class="d-md-none d-block"><a #home routerLink="/home" routerLinkActive="active">Home</a></li>
+          <li class="d-md-none d-block"><a #article routerLink="/articles" routerLinkActive="active">Articles</a>
+          </li>
+          <li class="d-md-none d-block"><a #event routerLink="/events" routerLinkActive="active">Events</a></li>
+          <li class="d-md-none d-block"><a #book routerLink="/booking" routerLinkActive="active">Booking</a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="section">
+        <div *ngIf="!isAuthenticated" class="row no-gutters login" data-toggle="modal" data-target="#exampleModal2">
+          <i class="fas fa-user"></i>
+          <a #logIn>Sign in</a>
+        </div>
+
+        <div *ngIf="!isAuthenticated" class="row no-gutters register" data-toggle="modal" data-target="#exampleModal">
+          <i class="fas fa-user-plus"></i>
+          <a #register>Register</a>
+        </div>
+
+        <div class="row no-gutters register" *ngIf="isAdmin && isAuthenticated" [routerLink]="routerLink">
+          <i class="fas fa-chart-line"></i>
+          <a #dashboard>Admin Panel</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="links">
+        <p>Connect with us</p>
+      </div>
+
+      <div class="row no-gutters subscribe">
+        <i class="fas fa-envelope-open-text"></i>
+        <p (click)="onSubscribe()" #subscribe>Subscribe to newsletter</p>
+      </div>
+
+      <div class="row no-gutters socials">
+        <i class="fab fa-whatsapp whatsApp"></i>
+        <i class="fab fa-facebook-f facebook"></i>
+        <i class="fab fa-linkedin-in linkedin"></i>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="logOut" *ngIf="isAuthenticated" [ngClass]="isAdmin ? 'admin' : 'user'">
+    <i #logOut class="fas fa-door-open" (click)="onLogout()"></i>
+  </div>
+</p-sidebar>
+

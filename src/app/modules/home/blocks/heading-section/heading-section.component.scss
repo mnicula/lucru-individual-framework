@@ -1,0 +1,88 @@
+@import "../../../../../styles";
+
+.heading-section {
+  width: 100%;
+  height: 800px;
+  min-height: 700px;
+  background-color: $section;
+  @include media-breakpoint-down(lg){
+    min-height: 600px;
+    height: 700px;
+  }
+
+  @include media-breakpoint-down(md){
+    min-height: 600px;
+    height: 700px;
+  }
+  @include media-breakpoint-down(sm){
+    min-height: 400px;
+  }
+
+
+  .image {
+    margin: 210px 0 120px 0;
+
+    @include media-breakpoint-down(sm){
+      margin: 100px 0 20px 0;
+      text-align: center;
+    }
+
+    img {
+      width: 450px;
+      height: 455px;
+
+      @include media-breakpoint-down(lg){
+        width: 400px;
+        height: 400px;
+      }
+      @include media-breakpoint-down(md){
+        width: 300px;
+        height: 300px;
+      }
+      @include media-breakpoint-down(sm){
+        width: 350px;
+        height: 350px;
+      }
+    }
+  }
+
+  .about {
+    margin-top: 240px;
+    line-height: 30px;
+
+    @include media-breakpoint-down(sm){
+      margin-top: 0;
+    }
+
+    h2 {
+      color: $black;
+      font-weight: bold;
+      margin-bottom: 70px;
+
+      @include media-breakpoint-down(md){
+        font-size: 25px;
+        margin-bottom: 30px;
+      }
+      @include media-breakpoint-down(sm){
+        text-align: center;
+      }
+    }
+
+    p {
+      color: $black;
+      margin-bottom: 40px;
+      text-align: justify;
+
+      @include media-breakpoint-down(md){
+        font-size: 12px;
+        line-height: 20px;
+      }
+    }
+  }
+
+  .buttons {
+    &:last-child {
+      margin-left: auto;
+    }
+  }
+}

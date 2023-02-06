@@ -1,0 +1,11 @@
+<div class="custom-row">
+  <app-admin-header></app-admin-header>
+  <div class="position-sidebar" [ngClass]="isOpen ? 'col-2': 'col-0'">
+    <app-admin-sidebar></app-admin-sidebar>
+  </div>
+
+  <div class="position-main" [ngClass]="isOpen ? 'col-10 open' : 'col'">
+      <router-outlet></router-outlet>
+  </div>
+</div>
+

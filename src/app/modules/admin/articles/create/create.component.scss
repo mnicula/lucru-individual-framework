@@ -1,0 +1,150 @@
+@import "../../../../../styles";
+
+.create {
+  width: 100%;
+  height: 100%;
+  padding-top: 20px;
+
+  .margin {
+    height: 100%;
+    max-height: 600px;
+    min-height: 600px;
+  }
+
+  .back {
+    padding: 10px 30px;
+  }
+
+  .form {
+    margin-left: 10px;
+
+    .add {
+      width: 100%;
+      height: 100%;
+      padding: 20px;
+      box-sizing: border-box;
+
+      .button-create {
+        text-align: right;
+
+        button {
+          border-radius: 30px;
+          margin-top: 15px;
+          cursor: pointer;
+          outline: none;
+          border: none;
+          color: $white;
+          background-color: #6bd098;
+          width: 120px;
+          height: 40px;
+          font-weight: 400;
+          text-transform: capitalize;
+        }
+      }
+    }
+
+    .form-control {
+      font-size: 14px;
+      min-height: 50px;
+      border-radius: 50px;
+      padding: 0 25px;
+
+      &.select {
+        appearance: none;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+      }
+
+      select:disabled {
+        color: #6d757d;
+      }
+
+      &.text {
+        border-radius: 30px;
+      }
+    }
+
+  }
+
+  .image-picker {
+    width: 100%;
+    height: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+
+    .image {
+      min-height: 385px;
+      max-height: 385px;
+      width: 100%;
+      height: 100%;
+
+      img {
+        width: 100%;
+        height: 100%;
+        min-height: 385px;
+        max-height: 385px;
+        border-radius: 20px;
+      }
+    }
+
+
+    .data {
+      margin-top: 30px;
+
+      p {
+        color: $black;
+      }
+    }
+
+    .choose-file {
+      position: relative;
+      display: inline-block;
+      border-radius: 15px;
+      border: none;
+      text-align: center;
+      width: auto;
+      min-width: 50px;
+      padding: 10px;
+      color: $white;
+      margin-top: 30px;
+      background-color: #03B3B3;
+      cursor: pointer;
+
+      span {
+        i {
+          font-size: 20px;
+        }
+      }
+
+      input[type="file"] {
+        position: absolute;
+        padding: 10px;
+        border-radius: 20px;
+        top: 0;
+        width: 100px;
+        left: 0;
+        opacity: 0;
+      }
+    }
+
+    .cancel {
+      margin-left: 10px;
+      border-radius: 40%;
+      border: none;
+      text-align: center;
+      width: 40px;
+      height: 40px;
+      margin-top: 35px;
+      background-color: red;
+      opacity: 0.7;
+      cursor: pointer;
+      outline: none;
+
+      i {
+        color: $white;
+        font-size: 25px;
+        padding-top: 3px;
+      }
+    }
+  }
+}

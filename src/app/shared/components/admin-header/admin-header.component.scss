@@ -1,0 +1,103 @@
+@import "src/styles";
+
+header {
+  width: 100%;
+  height: 70px;
+  position: fixed;
+  z-index: 1000;
+  background-color: $white;
+  box-shadow: 0 6px 5px -4px rgba(0, 0, 0, 0.15);
+
+  .header {
+    width: 100%;
+    height: 100%;
+
+    .links {
+      width: 100%;
+      text-align: center;
+      height: 100%;
+
+      .drop{
+        text-align: right;
+        width: 135px;
+        line-height: 68px;
+        cursor: pointer;
+      }
+
+      .dropdown-item{
+        cursor: pointer;
+        text-align: center;
+
+        &:focus{
+          outline: none;
+        }
+        &:active{
+          background-color: transparent;
+        }
+      }
+
+      .icon {
+        height: 100%;
+        line-height: 65px;
+      }
+
+
+      a {
+        text-decoration: none;
+        color: $black;
+        margin: auto 0;
+      }
+
+      img {
+        width: 80px;
+        height: 55px;
+        border-radius: 50%;
+        margin: auto 0;
+        cursor: pointer;
+      }
+
+      p {
+        font-size: 18px;
+        text-transform: capitalize;
+        margin: auto 0;
+      }
+    }
+
+    .bars {
+      height: 100%;
+
+      .nav-icon {
+        width: 25px;
+        margin: 23px 10px 0 0;
+        cursor: pointer;
+      }
+
+      .nav-icon:after,
+      .nav-icon:before,
+      .nav-icon div {
+        background-color: $black;
+        border-radius: 3px;
+        content: '';
+        display: block;
+        height: 4px;
+        margin: 5px 0;
+        transition: all .2s ease-in-out;
+      }
+
+      &.animate {
+        .nav-icon:before {
+          transform: translateY(9px) rotate(135deg);
+        }
+
+        .nav-icon:after {
+          transform: translateY(-9px) rotate(-135deg);
+        }
+
+        .nav-icon div {
+          transform: scale(0);
+        }
+      }
+    }
+  }
+}
+

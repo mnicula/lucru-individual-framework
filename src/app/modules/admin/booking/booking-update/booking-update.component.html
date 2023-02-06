@@ -1,0 +1,134 @@
+<div class="update" *ngIf="room;else skeleton">
+  <div class="row no-gutters justify-content-center">
+    <div class="col-md-10">
+      <div class="card margin">
+        <div class="card-header">
+          <div class="back">
+            <button class="btn-form creation" (click)="onBack()">
+              <i class="fas fa-chevron-left"></i>
+              Back
+            </button>
+          </div>
+        </div>
+
+        <div class="card-body">
+          <form class="form" [formGroup]="form">
+            <div class="row no-gutters">
+              <div class="col-6 image-picker">
+                <div class="image" *ngIf="room?.imageUrl">
+                  <img [src]="room?.imageUrl"/>
+                </div>
+
+                <div class="image" *ngIf="!room?.imageUrl">
+                  <img src="../../../../../assets/images/default-image.jpg"/>
+                </div>
+
+                <div class="row no-gutters justify-content-end">
+                  <div class="data col-8">
+                    <p *ngIf="fileData">{{fileData.name}}</p>
+                  </div>
+
+
+                  <div class="col-4 text-right">
+                    <div class="choose-file" *ngIf="!room?.imageUrl">
+                      <span><i class="fas fa-image"></i></span>
+                      <input name="file" accept="image/*" type="file" (change)="fileProgress($event)"/>
+                    </div>
+                    <button class="cancel" *ngIf="room?.imageUrl" (click)="onCancel()"><i class="fas fa-times"></i>
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-6 add">
+                <div class="form-group">
+                  <input type="text" formControlName="name" [value]="room?.name"
+                         placeholder="Type name of the room"
+                         class="form-control">
+                </div>
+
+                <div class="form-group">
+                          <textarea placeholder="Write the description here..."
+                                    class="form-control text pt-4"
+                                    [value]="room?.description"
+                                    formControlName="description"
+                                    rows="7"></textarea>
+                </div>
+
+                <div class="mt-3">
+                  <div class="form-group">
+                    <input type="text" [value]="room?.pricePerHour" formControlName="pricePerHour"
+                           (keypress)="onNumberType($event)"
+                           class="form-control">
+                  </div>
+                </div>
+
+                <div class="button-create">
+                  <button (click)="onSubmit()" [disabled]="(!(form.dirty || fileData))">Create</button>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #skeleton>
+  <div class="update">
+    <div class="row no-gutters justify-content-center">
+      <div class="col-md-10">
+        <div class="card margin">
+          <div class="card-header">
+            <div class="back">
+              <button>
+
+              </button>
+            </div>
+          </div>
+
+          <div class="card-body">
+            <div class="row no-gutters">
+              <div class="col-6 image-picker pt-0">
+                <div class="image">
+                  <img class="img"/>
+                </div>
+
+                <div class="row no-gutters justify-content-end">
+                  <div class="data col-3">
+                    <p class="button"></p>
+                  </div>
+
+                </div>
+              </div>
+
+              <div class="col-6 add">
+                <div class="form-group">
+                  <input type="text"
+                         class="form-control text">
+                </div>
+
+                <div class="form-group">
+                          <textarea
+                            class="form-control some pt-4"
+                            rows="7"></textarea>
+                </div>
+                <div class="row no-gutters justify-content-between">
+                  <p class="col mr-1"></p>
+                </div>
+
+                <div class="button-update text-right">
+                  <button></button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>
+<p-toast position="bottom-right"></p-toast>
+
+

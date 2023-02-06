@@ -1,0 +1,205 @@
+<app-header></app-header>
+<div class="articles" [ngClass]="filteredArticles?.length === 0 ? 'background' : ''" *ngIf="dataLoaded; else skeleton">
+  <div class="container">
+    <div class="row no-gutters">
+      <div class="title">
+        <h2 *ngIf="filteredArticles?.length !== 0">Articles</h2>
+      </div>
+    </div>
+
+    <div class="filter row no-gutters justify-content-center mb-2" [ngClass]="filteredArticles?.length === 0 ? '' : 'padding'">
+      <button class="btn-border" *ngFor="let category of categories"
+              [routerLink]="['/articles/filter/page/1']" (click)="init(category?.name)" [class.active]="categoryActive === category?.name" [queryParams]="{category: category?.name}">{{category?.name}}</button>
+      <button class="btn-exit" routerLink="/articles"><i class="fas fa-times"></i></button>
+    </div>
+  </div>
+
+
+  <div class="row no-gutters" [ngClass]="filteredArticles?.length === 0 ? 'justify-content-center' : ''" [@fadeIn]>
+
+    <div class="container row no-gutters justify-content-center" *ngIf="filteredArticles?.length === 0 && dataLoaded">
+      <div class="description col-6">
+        <h2>Articles not found</h2>
+        <p>Oops, looks like we dont have any articles or your matching your filter criteria. We suggest that you <span
+          routerLink="../../home">return to home page</span>
+        </p>
+      </div>
+
+      <div class="video col-6">
+        <video autoplay loop muted preload="auto" playsinline
+               src="../../../../assets/images/ezgif.com-gif-to-mp4.mp4"></video>
+      </div>
+    </div>
+
+    <div class="article first"
+         *ngFor="let article of filteredArticles; let i = index;">
+      <div class="container">
+        <img class="image" src="{{article?.imageUrl}}" alt="">
+
+        <div class="description">
+          <h4>{{article?.title}}</h4>
+          <p class="" [id]="article?.id">{{article?.content}}</p>
+        </div>
+
+        <div class="button">
+          <button class="btn-article" routerLink="../../../id/{{article.id}}" (click)="onRead(article.id)">Read more...
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="paginator" *ngIf="filteredArticles?.length !== 0">
+    <img class="left" src="../../../../assets/images/article1.svg" alt="">
+    <img class="right" src="../../../../assets/images/article2.svg" alt="">
+
+    <div class="row no-gutters justify-content-center page">
+      <nav aria-label="Page navigation example">
+        <ul *ngIf="pagination?.pages && pagination?.pages.length" class="pagination">
+          <li class="page-item" [ngClass]="{disabled:pagination?.currentPage === 0}">
+            <a class="page-link previous"
+               (click)="loadPage(pagination?.currentPage - 1, categoryActive)"
+               routerLink="/articles/filter/page/{{routeCurrent - 1}}"
+               [queryParams]="{category: categoryActive}"
+               routerLinkActive="active">
+              Previous
+              <i class="fas fa-chevron-left"></i>
+            </a></li>
+          <li class="page-item d-flex" *ngFor="let page of pagination?.pages"
+              [ngClass]="{active:pagination?.currentPage === page}">
+            <a class="page-link"
+               (click)="loadPage(page, categoryActive)" routerLink="/articles/filter/page/{{page + 1}}" [queryParams]="{category: categoryActive}" routerLinkActive="active">{{page + 1}}</a></li>
+          <li class="page-item" [ngClass]="{disabled:pagination?.currentPage === pagination?.totalPages - 1}"><a
+            class="page-link next" (click)="loadPage(pagination?.currentPage + 1, categoryActive)"
+            routerLink="/articles/filter/page/{{routeCurrent + 1}}" [queryParams]="{category: categoryActive}" routerLinkActive="active">
+            <i class="fas fa-chevron-right"></i>
+            Next
+          </a></li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+<ng-template #skeleton>
+  <div class="articles">
+    <div class="container">
+      <div class="row no-gutters">
+        <div class="title">
+          <h2>Articles</h2>
+        </div>
+      </div>
+
+      <div class="filter row no-gutters justify-content-center mb-2">
+        <button class="btn-border"></button>
+        <button class="btn-border"></button>
+      </div>
+    </div>
+
+
+    <div class="row no-gutters">
+      <div class="article first">
+        <div class="container">
+          <img class="image" src="" alt="">
+
+          <div class="description">
+            <h4></h4>
+            <p class=""></p>
+          </div>
+
+          <div class="button">
+            <button class="btn-article"></button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row no-gutters">
+      <div class="article first second">
+        <div class="container">
+          <img class="image" src="" alt="">
+
+          <div class="description">
+            <h4></h4>
+            <p class=""></p>
+          </div>
+
+          <div class="button">
+            <button class="btn-article" routerLink="../../id/"></button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row no-gutters">
+      <div class="article first">
+        <div class="container">
+          <img class="image" src="" alt="">
+
+          <div class="description">
+            <h4></h4>
+            <p class=""></p>
+          </div>
+
+          <div class="button">
+            <button class="btn-article" routerLink="../../id/"></button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row no-gutters">
+      <div class="article first second">
+        <div class="container">
+          <img class="image" src="" alt="">
+
+          <div class="description">
+            <h4></h4>
+            <p class=""></p>
+          </div>
+
+          <div class="button">
+            <button class="btn-article" routerLink="../../id/"></button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row no-gutters">
+      <div class="article first">
+        <div class="container">
+          <img class="image" src="" alt="">
+
+          <div class="description">
+            <h4></h4>
+            <p class=""></p>
+          </div>
+
+          <div class="button">
+            <button class="btn-article" routerLink="../../id/"></button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row no-gutters">
+      <div class="article first second">
+        <div class="container">
+          <img class="image" src="" alt="">
+
+          <div class="description">
+            <h4></h4>
+            <p class=""></p>
+          </div>
+
+          <div class="button">
+            <button class="btn-article" routerLink="../../id/"></button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>
+
+
+

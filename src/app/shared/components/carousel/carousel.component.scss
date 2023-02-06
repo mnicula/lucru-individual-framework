@@ -1,0 +1,148 @@
+@import "src/styles";
+
+:host {
+  flex: 1;
+}
+
+.images {
+  position: relative;
+  height: 100%;
+  min-height: 600px;
+  width: 1065px;
+
+  @include media-breakpoint-down(lg){
+    width: 900px;
+  }
+  @include media-breakpoint-down(md){
+    width: 680px;
+    height: 410px;
+  }
+
+  @include media-breakpoint-down(sm){
+    width: 500px;
+    height: 450px;
+  }
+}
+
+.slide {
+  position: absolute;
+  top: 0;
+  left: 50px;
+  width: 450px;
+  margin-top: 60px;
+  height: 300px;
+  object-fit: cover;
+  // zoom effect on hover
+  transition: transform 150ms cubic-bezier(0.25, 0.46, 0.45, 0.84);
+
+  @include media-breakpoint-down(lg){
+    width: 350px;
+  }
+  @include media-breakpoint-down(md){
+    width: 83%;
+    height: 350px;
+  }
+  @include media-breakpoint-down(sm){
+    width: 75%;
+  }
+
+  &.second {
+    left: 605px;
+
+    @include media-breakpoint-down(lg){
+      left: 505px;
+    }
+  }
+}
+
+.slide:hover {
+  transform: scale(1.025);
+}
+
+// =========================
+// Next and Prev buttons
+// =========================
+.control {
+  border: none;
+  background-color: transparent;
+  outline: 0; // remove blue outline border, but make sure they are still focussable for accessibility
+  position: absolute;
+  top: 130px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0.2em;
+  font-weight: bold;
+  font-size: 5.5em;
+  user-select: none;
+  height: 15%;
+  opacity: 1;
+  margin-top: 30px;
+  // opacity effect on hover
+
+  @include media-breakpoint-down(md){
+    margin-top: 0;
+  }
+
+  .arrow {
+    border-color: #727BD1;
+    width: 30px;
+    height: 30px;
+    border-radius: 3px;
+  }
+
+  /* Position the buttons */
+  &.next {
+    right: -40px;
+
+    @include media-breakpoint-down(md){
+      right: 0;
+    }
+  }
+
+  &.prev {
+    left: 0;
+  }
+}
+
+/* style the arrows */
+.arrow {
+  display: block;
+  border-left: 0.1em solid white;
+  border-bottom: 0.1em solid white;
+  width: 0.5em;
+  height: 0.5em;
+
+  &.left {
+    transform: rotate(45deg);
+  }
+
+  &.right {
+    transform: rotate(225deg);
+  }
+}
+.width{
+  position: relative;
+  top: 390px;
+  left: 20px;
+  @include media-breakpoint-down(md){
+    width: 100%;
+    margin-bottom: 40px;
+  }
+}
+.text {
+  padding: 0 50px;
+
+  @include media-breakpoint-down(md){
+    margin-top: 50px;
+  }
+  p{
+    overflow: hidden;
+    display: -webkit-box;
+    min-height: 72px;
+    -webkit-line-clamp: 3;
+    text-align: justify;
+    -webkit-box-orient: vertical;
+  }
+}

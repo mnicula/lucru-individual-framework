@@ -1,0 +1,16 @@
+<div class="sidebar" *ngIf="isOpen">
+  <ul class="menu">
+    <li *ngFor="let menu of menus" [routerLink]="menu?.route" routerLinkActive="active">
+      <i [class]="menu?.icon"></i>
+      <p>{{menu?.label}}</p>
+    </li>
+  </ul>
+</div>
+
+<div class="sidebar" *ngIf="!isOpen" [ngClass]="{'closed': !isOpen}">
+  <ul class="menu-closed">
+    <li *ngFor="let menu of menus" [routerLink]="menu?.route" routerLinkActive="active">
+      <i [class]="menu?.icon"></i>
+    </li>
+  </ul>
+</div>

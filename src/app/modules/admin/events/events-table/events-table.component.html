@@ -1,0 +1,236 @@
+<div class="table" *ngIf="data; else skeleton">
+  <div class="row no-gutters justify-content-center">
+    <div class="col-md-10">
+      <div class="card  margin" [ngClass]="events?.length === 0   ? 'background' : ''">
+        <div class="card-header header row">
+          <div class="col-12 row no-gutters justify-content-start">
+            <button class="btn-form create" routerLink="./../../add">
+              <i class="fas fa-plus"></i>Create
+            </button>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="table-responsive">
+            <table class="table">
+              <thead class=" text-primary" *ngIf="events?.length > 0">
+              <th class="text-center">#</th>
+              <th class="text-center text-capitalize">Title</th>
+              <th class="text-center text-capitalize">Description</th>
+              <th class="text-center text-capitalize">Cost</th>
+              <th class="text-center text-capitalize width">Start Date</th>
+              <th class="text-center text-capitalize width">End Date</th>
+              </thead>
+
+              <ng-container *ngIf="events?.length === 0">
+                <div class="container not-found row no-gutters justify-content-center">
+                  <div class="description col-6">
+                    <h2>Events not found</h2>
+                    <p>Oops, looks like we dont have any events. We suggest to <span
+                      routerLink="./../../add">create one</span></p>
+                  </div>
+
+                  <div class="image-not col-6">
+                    <img src="../../../../../assets/images/events-no.svg">
+                  </div>
+
+                </div>
+              </ng-container>
+
+
+              <tbody *ngFor="let event of events; let i = index">
+              <tr class="new-item">
+                <td class="text-center">{{currentPage * 5 + (i + 1)}}</td>
+                <td class="text-center title">{{event.title}}</td>
+                <td class="text-center content" [class.open]="isOpen">{{event.description}}</td>
+                <td class="text-center">{{event.participationFee}}</td>
+                <td class="text-center">{{parseDate(event.startTime) | date:"dd/MM HH:mm"}}</td>
+                <td class="text-center">{{parseDate(event.endTime) | date:"dd/MM HH:mm"}}</td>
+                <td class="crud">
+                  <div class="icons row justify-content-center no-gutters">
+                    <div class="read" routerLink="../../view/{{event?.id}}">
+                      <i class="fas fa-book-open"></i>
+                    </div>
+
+                    <div class="modify" routerLink="../../update/{{event.id}}" (click)="onUpdate(data)">
+                      <i class="fas fa-edit"></i>
+                    </div>
+
+                    <div class="delete" data-toggle="modal" data-target="#exampleModal"
+                         (click)="onOpen(event.id, index)">
+                      <i class="fas fa-trash-alt"></i>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <div class="row no-gutters justify-content-center" *ngIf="events?.length > 0">
+        <div class="paginator">
+          <div class="row no-gutters justify-content-center page">
+            <nav aria-label="Page navigation example">
+              <ul *ngIf="pagination?.pages && pagination?.pages.length" class="pagination">
+                <li class="page-item" [ngClass]="{disabled:pagination?.currentPage === 0}">
+                  <a class="page-link previous"
+                     (click)="loadPage(pagination.currentPage - 1)"
+                     routerLink="../{{routeCurrent - 1}}"
+                     routerLinkActive="active">
+                    Previous
+                    <i class="fas fa-chevron-left"></i>
+                  </a></li>
+                <li class="page-item d-flex" *ngFor="let page of pagination?.pages"
+                    [ngClass]="{active:pagination?.currentPage === page}">
+                  <a class="page-link"
+                     (click)="loadPage(page)" routerLink="../{{page + 1}}" routerLinkActive="active">{{page + 1}}</a>
+                </li>
+                <li class="page-item" [ngClass]="{disabled:pagination?.currentPage === pagination?.totalPages - 1}"><a
+                  class="page-link next" (click)="loadPage(pagination.currentPage + 1)"
+                  routerLink="../{{routeCurrent + 1}}" routerLinkActive="active">
+                  <i class="fas fa-chevron-right"></i>
+                  Next
+                </a></li>
+              </ul>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Are you sure that you want to delete?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary cancel" data-dismiss="modal">No</button>
+        <button type="button" class="btn btn-danger delete" data-dismiss="modal" (click)="onDelete(id, index)">Yes
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #skeleton>
+  <div class="table">
+    <div class="row no-gutters justify-content-center">
+      <div class="col-md-10">
+        <div class="card  margin">
+          <div class="card-header header row">
+            <div class="col-12 row no-gutters justify-content-start">
+              <button class="btn-form" routerLink="./../../add">
+              </button>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="table-responsive">
+              <table class="table">
+                <thead class=" text-primary">
+
+                </thead>
+
+
+                <tbody>
+                <div class="item">
+                  <div class="line"></div>
+                  <div class="crud empty">
+                    <div class="icons row justify-content-center no-gutters">
+                      <div class="read-skeleton" routerLink="../../view/">
+                      </div>
+
+                      <div class="modify-skeleton">
+                      </div>
+
+                      <div class="delete-skeleton" data-toggle="modal" data-target="#exampleModal">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="item ">
+                  <div class="line"></div>
+                  <div class="crud empty">
+                    <div class="icons row justify-content-center no-gutters">
+                      <div class="read-skeleton" routerLink="../../view/">
+                      </div>
+
+                      <div class="modify-skeleton">
+                      </div>
+
+                      <div class="delete-skeleton" data-toggle="modal" data-target="#exampleModal">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+
+                <div class="item">
+                  <div class="line"></div>
+                  <div class="crud empty">
+                    <div class="icons row justify-content-center no-gutters">
+                      <div class="read-skeleton" routerLink="../../view/">
+                      </div>
+
+                      <div class="modify-skeleton">
+                      </div>
+
+                      <div class="delete-skeleton" data-toggle="modal" data-target="#exampleModal">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+
+                <div class="item">
+                  <div class="line"></div>
+                  <div class="crud empty">
+                    <div class="icons row justify-content-center no-gutters">
+                      <div class="read-skeleton" routerLink="../../view/">
+                      </div>
+
+                      <div class="modify-skeleton">
+                      </div>
+
+                      <div class="delete-skeleton" data-toggle="modal" data-target="#exampleModal">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+
+                <div class="item">
+                  <div class="line"></div>
+                  <div class="crud empty">
+                    <div class="icons row justify-content-center no-gutters">
+                      <div class="read-skeleton" routerLink="../../view/">
+                      </div>
+
+                      <div class="modify-skeleton">
+                      </div>
+
+                      <div class="delete-skeleton" data-toggle="modal" data-target="#exampleModal">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>
+<p-toast position="bottom-right"></p-toast>

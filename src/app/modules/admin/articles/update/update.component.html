@@ -1,0 +1,129 @@
+<div class="update" *ngIf="updatedObject && categories.length !== 0;else skeleton">
+  <div class="row no-gutters justify-content-center">
+    <div class="col-md-10">
+      <div class="card margin">
+        <div class="card-header">
+          <div class="back">
+            <button class="btn-form creation" (click)="onBack()">
+              <i class="fas fa-chevron-left"></i>
+              Back
+            </button>
+          </div>
+        </div>
+
+        <div class="card-body">
+          <form class="form" [formGroup]="form">
+            <div class="row no-gutters">
+              <div class="col-6 image-picker">
+                <div class="image" *ngIf="updatedObject?.imageUrl">
+                  <img [src]="updatedObject?.imageUrl"/>
+                </div>
+
+                <div class="image" *ngIf="!updatedObject?.imageUrl">
+                  <img src="../../../../../assets/images/default-image.jpg" alt="">
+                </div>
+
+                <div class="row no-gutters justify-content-end">
+                  <div class="data col-8">
+                    <p *ngIf="fileData">{{fileData.name}}</p>
+                  </div>
+
+
+                  <div class="col-4 text-right">
+                    <div class="choose-file" *ngIf="!updatedObject?.imageUrl">
+                      <span><i class="fas fa-image"></i></span>
+                      <input name="Select File" type="file" (change)="fileProgress($event)"/>
+                    </div>
+                    <button class="cancel" *ngIf="updatedObject?.imageUrl"
+                            (click)="onCancel()"><i class="fas fa-times"></i></button>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-6 add">
+                <div class="form-group">
+                  <input type="text" formControlName="title" placeholder="Type title of the article"
+                         [value]="updatedObject?.title"
+                         class="form-control">
+                </div>
+
+                <div class="form-group">
+                  <select class="form-control select" formControlName="category">
+                    <option [value]="updatedObject?.category">{{updatedObject?.category}}</option>
+                    <option *ngFor="let category of categories">{{category}}</option>
+                  </select>
+                </div>
+
+                <div class="form-group">
+                          <textarea placeholder="Write the content Here..."
+                                    class="form-control text pt-4"
+                                    [value]="updatedObject?.content"
+                                    formControlName="content"
+                                    rows="10"></textarea>
+                </div>
+
+                <div class="button-update">
+                  <button (click)="onSubmit()" [disabled]="(!(form.dirty || fileData))">Update</button>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #skeleton>
+  <div class="update">
+    <div class="row no-gutters justify-content-center">
+      <div class="col-md-10">
+        <div class="card margin">
+          <div class="card-header">
+            <div class="back">
+              <button>
+
+              </button>
+            </div>
+          </div>
+
+          <div class="card-body">
+            <div class="row no-gutters">
+              <div class="col-6 image-picker pt-0">
+                <div class="image">
+                  <img class="img"/>
+                </div>
+
+                <div class="row no-gutters justify-content-end">
+                  <div class="data col-8">
+                    <p></p>
+                  </div>
+
+                </div>
+              </div>
+
+              <div class="col-6 add">
+                <div class="form-group">
+                  <input type="text"
+                         class="form-control text">
+                </div>
+
+                <div class="form-group">
+                          <textarea
+                            class="form-control some pt-4"
+                            rows="14"></textarea>
+                </div>
+
+                <div class="button-update text-right">
+                  <button></button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>
+<p-toast position="bottom-right"></p-toast>
+

@@ -1,0 +1,338 @@
+<app-header></app-header>
+<div class="events">
+  <div class="container">
+    <div class="row no-gutters">
+      <div class="title">
+        <h2>Events</h2>
+      </div>
+    </div>
+  </div>
+
+  <div class="image-event">
+    <img src="../../../../assets/images/events.svg" alt="">
+  </div>
+
+  <div class="payment">
+    <div class="container">
+      <div class="row no-gutters justify-content-center">
+        <ng-container *ngIf="!isAuthenticated">
+          <div class="buttons">
+            <button [class.active]="isSignPage" (click)="isSignPage = true; isJoinPage = false">Sign In</button>
+            <button [class.active]="isJoinPage" (click)="isSignPage = false; isJoinPage = true">Join Now</button>
+            <div class="block">
+              <div class="sign" *ngIf="isSignPage">
+                <div class="row no-gutters steps justify-content-between">
+                  <div class="active">1</div>
+                  <div class="inactive">2</div>
+                  <div class="inactive">3</div>
+                </div>
+
+                <form class="form" [formGroup]="signInForm">
+                  <div class="form-group">
+                    <input type="email" class="form-control" placeholder="Username" formControlName="username"
+                           [class.is-invalid]="username.invalid && username.touched">
+                    <div *ngIf="(username.invalid && username.touched) || username.dirty" class="pl-3">
+                      <small *ngIf="username.errors?.required" class="text-danger">Username is required</small>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <input type="password" class="form-control" placeholder="Password" formControlName="password"
+                           [class.is-invalid]="password.invalid && password.touched">
+                    <div *ngIf="(password.invalid && password.touched) || password.dirty" class="pl-3">
+                      <small *ngIf="password.errors?.required" class="text-danger">Password is required</small>
+                    </div>
+                  </div>
+                  <div *ngIf="error" class="alert alert-danger mt-3 mb-2">{{error}}</div>
+
+                  <div class="row no-gutters check-box">
+                    <p-checkbox label="Keep me signed in"></p-checkbox>
+                  </div>
+
+                  <div class="row no-gutters password">
+                    <a href="javascript:void(0)">Forgot you password?</a>
+                  </div>
+
+                  <div class="row no-gutters button justify-content-end">
+                    <button class="btn-border" [disabled]="signInForm.invalid" (click)="onSubmitSign()">Sign in</button>
+                  </div>
+
+                </form>
+              </div>
+
+              <div class="sign" *ngIf="isJoinPage">
+                <div class="row no-gutters steps justify-content-between">
+                  <div class="active">1</div>
+                  <div class="inactive">2</div>
+                  <div class="inactive">3</div>
+                </div>
+
+                <form class="form" [formGroup]="registerForm">
+                  <div class="form-group">
+                    <input type="text" class="form-control" formControlName="username" placeholder="Username"
+                           [class.is-invalid]="registerForm.get('username').invalid && registerForm.get('username').touched">
+                    <div *ngIf="(registerFullName.invalid && registerFullName.touched) || registerFullName.dirty"
+                         class="pl-3">
+                      <small *ngIf="registerFullName.errors?.required" class="text-danger">User name is required</small>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <input type="text" class="form-control" formControlName="email" placeholder="Email"
+                           [class.is-invalid]="registerForm.get('email').invalid && registerForm.get('email').touched">
+                    <div *ngIf="(registerEmail.invalid && registerEmail.touched) || registerEmail.dirty" class="pl-3">
+                      <small *ngIf="registerEmail.errors?.required" class="text-danger">Email is required</small>
+                      <small *ngIf="registerEmail.errors?.email" class="text-danger">Please provide a valid email
+                        address</small>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <input type="password" class="form-control" formControlName="password" placeholder="Password"
+                           [class.is-invalid]="registerForm.get('password').invalid && registerForm.get('password').touched">
+                    <div *ngIf="(registerPassword.invalid && registerPassword.touched) || registerPassword.dirty"
+                         class="pl-3">
+                      <small *ngIf="registerPassword.errors?.required" class="text-danger">Password is required</small>
+                    </div>
+                  </div>
+
+                  <div class="row no-gutters check-box">
+                    <p-checkbox (onChange)="onChange($event)"
+                                label="I agree with the FabLab terms and contifions"></p-checkbox>
+                  </div>
+
+                  <div *ngIf="errorRegister" class="alert alert-danger mt-3 mb-0">{{errorRegister}}</div>
+
+                  <div class="row no-gutters button justify-content-end">
+                    <button class="btn-border color" [disabled]="!registerForm.valid" (click)="onRegister()">Create
+                      account
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </ng-container>
+
+
+        <ng-container *ngIf="isAuthenticated && !step3">
+          <div class="buttons">
+            <div class="block">
+              <div class="sign">
+                <div class="row no-gutters steps justify-content-between">
+                  <div class="inactive">1</div>
+                  <div class="active">2</div>
+                  <div class="inactive">3</div>
+                </div>
+
+                <div class="billing-address">
+                  <p>Billing Address</p>
+
+                  <form class="form" [formGroup]="billingForm">
+                    <div class="form-group">
+                      <input type="text" class="form-control" placeholder="Full name"
+                             formControlName="fullName"
+                             [class.is-invalid]="billingForm.get('fullName').invalid && billingForm.get('fullName').touched">
+                      <div *ngIf="(fullName.invalid && fullName.touched) || fullName.dirty"
+                           class="pl-3">
+                        <small *ngIf="fullName.errors?.required" class="text-danger">Full name is required</small>
+                      </div>
+                    </div>
+
+                    <div class="form-group">
+                      <input type="text" class="form-control" placeholder="Address 1" formControlName="address1">
+                    </div>
+
+                    <div class="form-group">
+                      <input type="text" class="form-control" placeholder="Address 2" formControlName="address2">
+                    </div>
+
+                    <div class="form-row">
+                      <div class="form-group col-md-6">
+                        <input type="text" class="form-control" placeholder="City" formControlName="city"
+                               [class.is-invalid]="billingForm.get('city').invalid && billingForm.get('city').touched">
+                        <div *ngIf="(city.invalid && city.touched) || city.dirty"
+                             class="pl-3">
+                          <small *ngIf="city.errors?.required" class="text-danger">City is
+                            required</small>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="form-row">
+                      <div class="form-group col-md-6">
+                        <input type="text" class="form-control" placeholder="Zip code"
+                               formControlName="zipCode"
+                               [value]="code"
+                               maxlength="7"
+                               minlength="7"
+                               (input)="onInsert($event)"
+                               [class.is-invalid]="billingForm.get('zipCode').invalid && billingForm.get('zipCode').touched">
+                        <div *ngIf="(zipCode.invalid && zipCode.touched) || zipCode.dirty"
+                             class="pl-3">
+                          <small *ngIf="zipCode.errors?.pattern" class="text-danger">e.g MD-1234</small>
+                        </div>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+
+                <div class="card-details">
+                  <p>Card Details</p>
+                  <form class="form" [formGroup]="cardDetails">
+                    <div class="form-group">
+                      <div class="form-control form-row"
+                           [class.is-invalid]="cardDetails.get('cardNr').invalid && cardDetails.get('cardNr').touched">
+                        <div class="icon col-0">
+                          <i class=""
+                             [ngClass]="getIcon() || 'fas fa-credit-card'"></i>
+                        </div>
+
+                        <input type=text class="col input" placeholder="Card Number"
+                               (input)="onView($event)"
+                               formControlName="cardNr"
+                               (keypress)="onValidate($event)"
+                               maxlength="16"
+                               size="16">
+                      </div>
+
+                      <div *ngIf="(cardNr.invalid && cardNr.touched) || cardNr.dirty"
+                           class="pl-3">
+                        <small *ngIf="cardNr.errors?.required" class="text-danger">Card number is required</small>
+                        <small *ngIf="cardNr.errors?.validateInput && !cardNr.errors?.required" class="text-danger">Please
+                          provide a valid</small>
+                      </div>
+                    </div>
+
+                    <div class="form-group">
+                      <input type="text" class="form-control" placeholder="Name on card"
+                             formControlName="name"
+                             [value]="nameCard"
+                             [class.is-invalid]="cardDetails.get('name').invalid && cardDetails.get('name').touched">
+                      <div *ngIf="(name.invalid && name.touched) || name.dirty"
+                           class="pl-3">
+                        <small *ngIf="name.errors?.required" class="text-danger">Card on name is required</small>
+                      </div>
+                    </div>
+
+
+                    <div class="form-row">
+                      <div class="form-group col-md-6">
+                        <input type="text" class="form-control" placeholder="Month" formControlName="month"
+                               (keypress)="onValidate($event)"
+                               minlength="2"
+                               maxlength="2"
+                               [class.is-invalid]="cardDetails.get('month').invalid && cardDetails.get('month').touched">
+                        <div *ngIf="(month.invalid && month.touched) || month.dirty"
+                             class="pl-3">
+                          <small *ngIf="month.errors?.required" class="text-danger">Month is
+                            required</small>
+                          <small *ngIf="month.errors?.minlength" class="text-danger">Month should have no less than 2
+                            characters</small>
+                        </div>
+                      </div>
+
+                      <div class="form-group col-md-6">
+                        <input type="text" class="form-control" placeholder="Year" formControlName="year"
+                               (keypress)="onValidate($event)"
+                               minlength="4"
+                               maxlength="4"
+                               [class.is-invalid]="cardDetails.get('year').invalid && cardDetails.get('year').touched">
+
+                        <div *ngIf="(year.invalid && year.touched) || year.dirty"
+                             class="pl-3">
+                          <small *ngIf="year.errors?.required" class="text-danger">Year is
+                            required</small>
+                          <small *ngIf="year.errors?.minlength" class="text-danger">Year should have no less than 4
+                            characters</small>
+
+                        </div>
+                      </div>
+                    </div>
+
+
+                    <div class="form-row">
+                      <div class="form-group col-md-6">
+                        <input type="text" class="form-control" placeholder="CVC" formControlName="CVC"
+                               maxlength="3"
+                               minlength="3"
+                               [class.is-invalid]="cardDetails.get('CVC').invalid && cardDetails.get('CVC').touched"
+                               (keypress)="onValidate($event)">
+                        <div *ngIf="(cvv.invalid && cvv.touched) || cvv.dirty"
+                             class="pl-3">
+                          <small *ngIf="cvv.errors?.required" class="text-danger">CVC is
+                            required</small>
+                          <small *ngIf="cvv.errors?.minlength" class="text-danger">CVC should have no less than 3
+                            characters</small>
+
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="row no-gutters check-box">
+                      <p-checkbox label="Save card for this account"></p-checkbox>
+                    </div>
+
+
+                    <div class="row no-gutters justify-content-end">
+                      <button class="button" [class.disabled]="(!(billingForm.valid && cardDetails.valid))"
+                              [disabled]="(!(billingForm.valid && cardDetails.valid))" (click)="onSubmit()">Pay
+                      </button>
+                    </div>
+                  </form>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </ng-container>
+
+        <ng-container *ngIf="isAuthenticated && step3">
+          <div class="buttons">
+            <div class="block">
+              <div class="sign">
+                <h4 class="mb-4">Review purchase</h4>
+                <div class="row no-gutters steps justify-content-between">
+                  <div class="inactive">1</div>
+                  <div class="inactive">2</div>
+                  <div class="active">3</div>
+                </div>
+
+                <div class="success">
+                  <i class="far fa-check-circle"></i>
+                  <h3>Payment complete</h3>
+                  <p>Confirmation will be sent to</p>
+                  <p class="bold">{{eventDetails?.email}}</p>
+
+
+                  <div class="row no-gutters p-3">
+                    <p class="col-6 text-left">Order number</p>
+                    <p class="col-6 text-right bold">{{orderId}}</p>
+                  </div>
+
+                  <div class="row no-gutters p-3">
+                    <p class="col-6 text-left">Event details</p>
+                    <div class="col-6 text-right">
+                      <p class="bold">{{eventDetails?.eventDetails?.startTime | date: 'dd.MM.yyyy'}}</p>
+                      <p class="bold">{{eventDetails?.eventDetails?.location}}</p>
+                      <p class="bold">{{eventDetails?.eventDetails?.title}}</p>
+                    </div>
+                  </div>
+
+                  <div class="row no-gutters p-3">
+                    <p class="col-6 text-left">Order total</p>
+                    <p class="col-6 text-right cost">{{eventDetails?.eventDetails?.participationFee}} MDL</p>
+                  </div>
+
+                  <hr>
+
+                  <p>Feel free to <span>contact us</span> with any questions!</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+</div>
+<p-toast position="bottom-right"></p-toast>
+

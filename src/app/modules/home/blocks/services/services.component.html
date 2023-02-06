@@ -1,0 +1,58 @@
+<div class="services">
+  <div class="container">
+    <div class="title">
+      <h2>Services</h2>
+    </div>
+
+    <div class="row no-gutters">
+      <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+        <div class="feature" *ngFor="let feature of featuresLeft">
+          <div class="row no-gutters">
+            <div class="col-lg-4 col-md-4 col-sm-2 col-xs-2 col-2 offset-lg-2 image d-md-none d-block">
+              <div class="number">
+                <p>{{feature.number}}</p>
+              </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-10 col-xs-10 col-10 text-md-right text-left">
+              <h6>{{feature.title}}</h6>
+              <p>{{feature.paragraph}}</p>
+            </div>
+
+            <div class="col-lg-4 col-md-4 offset-lg-2 image d-md-block d-none">
+              <div class="number">
+                <p>{{feature.number}}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-6 d-md-block d-none">
+        <div class="main-image">
+          <img
+            src="../../../../../assets/images/services.svg"
+            alt="">
+        </div>
+      </div>
+
+      <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+        <div class="feature" *ngFor="let feature of featuresRight">
+          <div class="row no-gutters">
+            <div class=" offset-lg-2 offset-md-2 col-lg-4 col-md-4 col-sm-2 col-xs-2 col-2 image">
+              <div class="number">
+                <p>{{feature.number}}</p>
+              </div>
+            </div>
+
+            <div class="col-lg-6 col-md-6 col-sm-10 col-xs-10 col-10">
+              <h6>{{feature.title}}</h6>
+              <p>{{feature.paragraph}}</p>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

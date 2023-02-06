@@ -1,0 +1,93 @@
+<div class="table">
+  <div class="row no-gutters justify-content-center">
+    <div class="col-md-10">
+      <div class="card  margin" [ngClass]="booking?.length === 0   ? 'background' : ''">
+        <div class="card-header header row">
+          <div class="col-12 row no-gutters justify-content-start">
+            <button class="btn-form create" routerLink="./../../add" [class.disabled]="booking?.length >= 6"
+                    [disabled]="booking?.length >= 6">
+              <i class="fas fa-plus"></i>Create
+            </button>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="table-responsive">
+            <table class="table">
+              <thead class=" text-primary" *ngIf="booking?.length > 0">
+              <th class="text-center">#</th>
+              <th class="text-center text-capitalize">Name</th>
+              <th class="text-center text-capitalize">Description</th>
+              <th class="text-center text-capitalize">Price</th>
+              </thead>
+
+              <ng-container *ngIf="booking?.length === 0">
+                <div class="container not-found row no-gutters justify-content-center">
+                  <div class="description col-5">
+                    <h2>Bookings not found</h2>
+                    <p>Oops, looks like we dont have any bookings. We suggest to <span
+                      routerLink="./../../add">create one</span></p>
+                  </div>
+
+                  <div class="image-not col-7">
+                    <img src="../../../../../assets/images/booking.svg">
+                  </div>
+
+                </div>
+              </ng-container>
+
+
+              <tbody *ngFor="let room of booking; let i = index">
+              <tr class="new-item">
+                <td class="text-center">{{i + 1}}</td>
+                <td class="text-center title">{{room?.name}}</td>
+                <td class="text-center content" [class.open]="isOpen">{{room?.description}}</td>
+                <td class="text-center title">{{room?.pricePerHour}}</td>
+
+                <td class="crud">
+                  <div class="icons row justify-content-center no-gutters">
+                    <div class="read" routerLink="../../view/{{room?.id}}" (click)="onRead(room?.id)">
+                      <i class="fas fa-book-open"></i>
+                    </div>
+
+                    <div class="modify" routerLink="../../update/{{room?.id}}" (click)="onUpdate(room)">
+                      <i class="fas fa-edit"></i>
+                    </div>
+
+                    <div class="delete" data-toggle="modal" data-target="#exampleModal"
+                         (click)="onOpen(room.id, index)">
+                      <i class="fas fa-trash-alt"></i>
+                    </div>
+
+                  </div>
+                </td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Are you sure that you want to delete?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary cancel" data-dismiss="modal">No</button>
+        <button type="button" class="btn btn-danger delete" data-dismiss="modal" (click)="onDelete(id, index)">Yes
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+

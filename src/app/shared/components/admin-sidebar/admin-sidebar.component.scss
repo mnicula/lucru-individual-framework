@@ -1,0 +1,87 @@
+@import "src/styles";
+
+.sidebar {
+  width: 100%;
+  height: 100%;
+  background-color: #fdb200;
+
+  &.closed {
+    box-shadow: 0 0 30px -8px rgba(0, 0, 0, 0.15);
+    background-color: $white;
+    text-align: center;
+  }
+
+  .menu {
+    padding: 20px 0 0 0;
+
+    li {
+      width: 200px;
+      padding: 20px;
+      color: black;
+      outline: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 15px;
+      margin: 20px auto;
+      text-align: center;
+      background-color: $white;
+
+      &:first-child {
+        margin: 0 auto 20px;
+      }
+
+      i {
+        font-size: 20px;
+        color: black;
+        margin: 0 10px 0 0;
+      }
+
+
+      &.active,
+      &:hover {
+        opacity: 0.86;
+      }
+
+      p {
+        font-size: 18px;
+        color: black;
+        margin: 0 10px 0 0;
+      }
+    }
+  }
+
+  .menu-closed {
+    padding: 20px 0 0 0;
+    text-align: center;
+
+    li {
+      padding: 5px 0;
+      width: 50px;
+      color: black;
+      outline: none;
+      cursor: pointer;
+      list-style: none;
+      border-radius: 15px;
+      margin: 0 10px 20px;
+      text-align: center;
+      background-color: #fdb200;
+
+      &:first-child {
+        margin: 0 10px 20px;
+      }
+
+      i {
+        font-size: 30px;
+        color: black;
+      }
+
+
+      &.active,
+      &:hover {
+        opacity: 0.86;
+      }
+    }
+  }
+}

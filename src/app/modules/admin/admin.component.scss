@@ -1,0 +1,59 @@
+@import "src/styles";
+
+.custom-row {
+  display: flex;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+
+  .position-main {
+    position: relative;
+    top: 70px;
+    width: 100%;
+    left: 75px;
+    height: calc(100% - 70px);
+
+    &.open {
+      left: 240px;
+    }
+  }
+
+  .position-sidebar {
+    position: fixed;
+    top: 70px;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+  }
+
+  .col-2 {
+    flex: 0 0 16.6%;
+    max-width: 16.6%;
+    padding: 0;
+    transition: all .25s;
+
+  }
+
+  .col-10 {
+    flex: 0 0 83.4%;
+    max-width: 83.4%;
+    padding: 0;
+    transition: all .25s;
+
+
+  }
+
+  .col-0 {
+    flex: 0 0 5%;
+    max-width: 5%;
+    transition: all .25s;
+  }
+
+  .col {
+    flex: 0 0 95%;
+    max-width: 95%;
+    transition: all .25s;
+
+  }
+}
+

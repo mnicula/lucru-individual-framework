@@ -1,0 +1,58 @@
+<div class="booking" *ngIf="spaces">
+  <div class="container">
+    <div class="row no-gutters">
+      <div class="title">
+        <h2>Book a space</h2>
+      </div>
+
+      <div class="image d-sm-block d-none">
+        <img [src]="image" alt="image" *ngIf="image">
+        <button class="book1" [class.disabled]="!spaces[0]?.id" [disabled]="!spaces[0]?.id"
+                (click)="onScroll(spaces[0]?.id)">1
+        </button>
+        <button class="book2" [class.disabled]="!spaces[1]?.id" [disabled]="!spaces[1]?.id"
+                (click)="onScroll(spaces[1]?.id)">2
+        </button>
+        <button class="book3" [class.disabled]="!spaces[2]?.id" [disabled]="!spaces[2]?.id"
+                (click)="onScroll(spaces[2]?.id)">3
+        </button>
+        <button class="book4" [class.disabled]="!spaces[3]?.id" [disabled]="!spaces[3]?.id"
+                (click)="onScroll(spaces[3]?.id)">4
+        </button>
+        <button class="book5" [class.disabled]="!spaces[4]?.id" [disabled]="!spaces[4]?.id"
+                (click)="onScroll(spaces[4]?.id)">5
+        </button>
+        <button class="book6" [class.disabled]="!spaces[5]?.id" [disabled]="!spaces[5]?.id"
+                (click)="onScroll(spaces[5]?.id)">6
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="space" *ngFor="let space of spaces" [id]="space?.id">
+    <div class="container">
+      <img
+        [src]="space?.imageUrl"
+        alt="">
+      <div class="description">
+        <h4>{{space?.name}}</h4>
+        <p><span></span>{{space?.description}}
+        </p>
+        <button class="btn-border" routerLink="./{{space?.id}}" [class.disabled]="!isAuthenticated" [disabled]="!isAuthenticated">Book a space</button>
+      </div>
+
+    </div>
+  </div>
+
+
+  <ng-container *ngIf="spaces?.length === 0">
+    <div class="not-found">
+      <h1>Seems like we dont have a rooms yet</h1>
+    </div>
+  </ng-container>
+
+  <div class="images">
+    <img src="../../../assets/images/article1.svg" alt="">
+    <img class="float-right" src="../../../assets/images/article2.svg" alt="">
+  </div>
+</div>

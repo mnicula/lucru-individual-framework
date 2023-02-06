@@ -1,0 +1,25 @@
+<header>
+  <div class="container h-100">
+    <div class="row no-gutters header">
+      <div class="bars col-2" [ngClass]="{'animate': open}">
+        <div class="nav-icon" (click)="onOpen()">
+          <div></div>
+        </div>
+      </div>
+
+      <div class="links col-10 row no-gutters justify-content-end">
+        <div class="h-100 dropdown row no-gutters">
+          <div class="dropdown-toggle h-100 drop" data-toggle="dropdown">
+            <img  src="../../../../assets/images/user1.png" alt="" id="dropdownMenuButton"
+                 aria-haspopup="true" [attr.aria-expanded]="isExpanded">
+          </div>
+
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <a class="dropdown-item" routerLink="../home" (click)="onNavigate()">Home</a>
+            <a class="dropdown-item" (click)="onLogout()">Log out</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>

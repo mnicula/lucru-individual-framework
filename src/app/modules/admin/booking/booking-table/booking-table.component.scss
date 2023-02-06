@@ -1,0 +1,262 @@
+@import "../../../../../styles";
+
+.table {
+  padding: 20px 0;
+
+
+  .new-item {
+    opacity: 0;
+    animation: fadeIn .3s linear forwards;
+  }
+
+  @keyframes fadeIn {
+    to {
+      opacity: 1;
+    }
+  }
+  .not-found {
+    height: 100%;
+    width: 100%;
+    .description {
+      text-align: center;
+      margin: auto;
+
+      h2 {
+        font-size: 30px;
+      }
+
+      p {
+        font-size: 20px;
+
+        span {
+          outline: none;
+          color: #23438b;
+          cursor: pointer;
+          text-decoration: underline;
+          padding-bottom: 5px;
+        }
+      }
+    }
+
+    .image-not {
+      text-align: center;
+
+      img {
+        width: 500px;
+        height:300px;
+      }
+    }
+  }
+
+  tr.removed-item {
+    animation: removed-item-animation .6s ease-out forwards;
+    transform-origin: 50% 50%;
+  }
+
+  @keyframes removed-item-animation {
+    0% {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    100% {
+      opacity: 0;
+      transform: scale(4);
+    }
+  }
+
+  .text {
+    margin-top: 140px;
+    text-align: center;
+
+    h1 {
+      font-weight: bold;
+      margin: 0;
+    }
+
+    a {
+      text-decoration: none;
+      color: #727bd1;
+      cursor: pointer;
+    }
+  }
+
+  .color {
+    color: #727bd1;
+  }
+
+  .margin {
+    height: 100%;
+    max-height: 480px;
+    min-height: 480px;
+  }
+
+
+  nav {
+    margin-top: 20px;
+  }
+
+  .header {
+    margin-top: 30px;
+
+    h4 {
+      text-transform: capitalize;
+    }
+
+    button {
+      margin: 10px;
+    }
+
+    i {
+      padding-right: 10px;
+    }
+  }
+
+  .table-responsive {
+    padding: 0;
+  }
+
+  .card .card-header {
+    margin: 0;
+  }
+
+  .table {
+    tbody + tbody {
+      border: none;
+    }
+
+    th {
+      border-top: none;
+      border-bottom: 1px solid #dee2e6;
+    }
+
+    tr {
+      color: #66615B;
+    }
+
+    thead {
+      th {
+        border-bottom: none;
+        color: #727bd1;
+      }
+    }
+
+    .title {
+      width: 100%;
+      max-width: 200px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .content {
+      display: inline-block;
+      width: 100%;
+      max-width: 710px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+
+      &.open {
+        max-width: 600px;
+      }
+    }
+
+    .crud {
+      width: 100%;
+      min-width: 154px;
+
+      .icons {
+
+        .read {
+          width: 30px;
+          height: 30px;
+          background-color: #727bd1;
+          border-radius: 10px;
+          cursor: pointer;
+          outline: none;
+          text-align: center;
+
+
+          i {
+            color: $white;
+            padding-top: 7px;
+          }
+        }
+
+        .modify {
+          width: 30px;
+          height: 30px;
+          background-color: #6bd098;
+          margin-left: 20px;
+          border-radius: 10px;
+          cursor: pointer;
+          outline: none;
+          text-align: center;
+
+
+          i {
+            color: $white;
+            padding: 7px 0 0 3px;
+          }
+        }
+
+        .delete {
+          width: 30px;
+          height: 30px;
+          background-color: red;
+          margin-left: 20px;
+          border-radius: 10px;
+          cursor: pointer;
+          opacity: 0.7;
+          outline: none;
+          text-align: center;
+
+
+          i {
+            color: $white;
+            padding-top: 7px;
+          }
+        }
+      }
+    }
+
+    .page-link {
+      color: #66615B;
+
+      &:hover {
+        background-color: #727bd1;
+        color: #f8f9fa;
+      }
+    }
+
+    @media screen and (max-width: 992px) {
+      .none {
+        display: none;
+      }
+    }
+  }
+}
+.modal-dialog{
+  margin: 200px auto;
+  max-width: 400px
+}
+.btn-danger{
+  &.delete{
+    opacity: 0.7;
+    border-radius: 10px;
+    border: none;
+  }
+}
+.btn-secondary{
+  &.cancel{
+    border-radius: 10px;
+    border: none;
+  }
+}
+.modal-header .close{
+  outline: none;
+}
+.modal-body{
+  text-align: center;
+}

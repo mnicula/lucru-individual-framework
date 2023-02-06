@@ -1,0 +1,51 @@
+<div class="images">
+  <div class="row no-gutters justify-content-md-center">
+    <img
+      *ngIf="item1?.imageUrl"
+      [src]="item1?.imageUrl"
+      class="slide"
+      @carouselAnimation
+    />
+
+    <img
+      *ngIf="item2?.imageUrl"
+      [src]="item2?.imageUrl"
+      class="slide second d-lg-block d-none"
+      @carouselAnimation
+    />
+
+    <img
+      *ngIf="!item1?.imageUrl"
+      src="../../../../assets/images/default-image.jpg"
+      class="slide"
+      @carouselAnimation
+    />
+
+    <img
+      *ngIf="!item2?.imageUrl"
+      src="../../../../assets/images/default-image.jpg"
+      class="slide second d-lg-block d-none"
+      @carouselAnimation
+    />
+
+    <div class="col-md-6 col-12 text-center text  width">
+      <h5 class="text-uppercase">{{item1?.title}}</h5>
+      <p>{{item1?.description}}</p>
+      <button [disabled]="!item1?.title && !item1?.description" class="btn-normal" routerLink="./{{item1?.id}}">Read more ...</button>
+    </div>
+
+    <div class="col-md-6 col-12 text-center text  width">
+      <h5 class="text-uppercase">{{item2?.title}}</h5>
+      <p>{{item2?.description}}</p>
+      <button [disabled]="!item2?.title && !item2?.description" class="btn-normal" routerLink="./{{item2?.id}}">Read more ...</button>
+    </div>
+
+  </div>
+
+  <button class="control prev" (click)="onPreviousClick()">
+    <span class="arrow left"></span>
+  </button>
+  <button class="control next" (click)="onNextClick()">
+    <span class="arrow right"></span>
+  </button>
+</div>

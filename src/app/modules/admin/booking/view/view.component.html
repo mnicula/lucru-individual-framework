@@ -1,0 +1,58 @@
+<div class="article" *ngIf="dataLoaded; else skeleton">
+  <div class="container">
+    <div class="row no-gutters justify-content-center">
+      <div class="back col-5">
+        <button class="btn-form creation" (click)="onBack()">
+          <i class="fas fa-chevron-left"></i>
+          Back
+        </button>
+      </div>
+
+      <div class="title col-7 row no-gutters">
+        <h2>{{room?.name}}</h2>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="description">
+        <p>
+          <ng-container *ngIf="room?.imageUrl">
+            <img [src]="room?.imageUrl" alt="">
+          </ng-container>
+
+          <ng-container *ngIf="!room?.imageUrl && dataLoaded">
+            <img src="../../../../../assets/images/default-image.jpg" alt="">
+          </ng-container>
+
+          {{room?.description}}
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #skeleton>
+  <div class="article padding">
+    <div class="container">
+      <div class="row no-gutters justify-content-center">
+        <div class="back col-5">
+          <button class="btn-form">
+
+          </button>
+        </div>
+
+        <div class="title col-7">
+          <h2></h2>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="description">
+          <img src="" alt="">
+          <p></p>
+          <h1></h1>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>

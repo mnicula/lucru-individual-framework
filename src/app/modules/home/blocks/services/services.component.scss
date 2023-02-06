@@ -1,0 +1,124 @@
+@import "../../../../../styles";
+
+.services {
+  background-color: $white;
+  width: 100%;
+  height: 900px;
+  margin: 40px 0;
+  min-height: 800px;
+  @include media-breakpoint-down(lg){
+    min-height: 700px;
+    height: 800px;
+  }
+
+  @include media-breakpoint-down(md){
+    min-height: 700px;
+    height: 800px;
+  }
+  @include media-breakpoint-down(xs){
+    height: 600px;
+  }
+
+
+  .title {
+    text-align: center;
+    padding: 20px;
+
+    h2 {
+      color: $black;
+      text-transform: uppercase;
+      font-weight: bold;
+
+      @include media-breakpoint-down(md) {
+        font-size: 25px;
+      }
+    }
+  }
+
+  .feature {
+    width: 100%;
+    margin: 40px 0 160px 0;
+
+    @include media-breakpoint-down(lg) {
+      margin: 40px 0 100px 0;
+    }
+    @include media-breakpoint-down(sm) {
+      margin: 30px;
+    }
+
+    h6 {
+      font-weight: bold;
+      text-transform: uppercase;
+      color: $black;
+      @include media-breakpoint-down(sm) {
+        margin: 10px 0 0 10px;
+      }
+    }
+
+    p {
+      color: $black;
+      font-size: 14px;
+      @include media-breakpoint-down(sm) {
+        margin: 10px 0 0 10px;
+      }
+    }
+
+    .image {
+      margin: auto;
+      text-align: center;
+
+      .number {
+        background-color: $services;
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+
+        @include media-breakpoint-down(sm) {
+          width: 80px;
+          height: 80px;
+        }
+        @include media-breakpoint-down(xs){
+          width: 60px;
+          height: 60px;
+        }
+
+        p {
+          color: $white;
+          margin: 0;
+          font-weight: bold;
+          padding-top: 7px;
+          font-size: 30px;
+
+          @include media-breakpoint-down(sm) {
+            font-size: 35px;
+            padding-top: 12px;
+          }
+          @include media-breakpoint-down(xs){
+            font-size: 30px;
+            padding-top: 10px;
+          }
+        }
+      }
+    }
+
+  }
+
+  .main-image {
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    padding-top: 120px;
+
+    img {
+      object-fit: contain;
+      width: 400px;
+      height: 400px;
+
+      @include media-breakpoint-down(lg) {
+        width: 300px;
+        height: 300px;
+      }
+    }
+  }
+
+}

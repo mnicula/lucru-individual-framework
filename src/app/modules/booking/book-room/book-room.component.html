@@ -1,0 +1,102 @@
+<div class="booking">
+  <div class="title">
+    <h2>Book a space</h2>
+  </div>
+
+  <div class="container">
+    <div class="row no-gutters">
+      <div class="col-md-6">
+        <img *ngIf="room?.imageUrl" [src]="room?.imageUrl" alt="">
+      </div>
+
+      <div class="col-md-6 description">
+        <h3>{{room?.name}}</h3>
+        <p><span></span>{{room?.description}}</p>
+
+        <p class="font-weight-bold">Price per hour: {{room?.pricePerHour}} MDL</p>
+      </div>
+    </div>
+
+    <div class="book row no-gutters justify-content-around">
+      <div class="info">
+        <h3>Booking information</h3>
+      </div>
+
+      <form class="w-100 form" [formGroup]="form">
+        <div class="form-row justify-content-between">
+          <div class="form-group col-md-5">
+            <input type="text" class="form-control" placeholder="Full name" formControlName="fullName"
+                   [class.is-invalid]="form.get('fullName').invalid && form.get('fullName').touched">
+            <div *ngIf="(fullName.invalid && fullName.touched) || fullName.dirty"
+                 class="pl-3">
+              <small *ngIf="fullName.errors?.required" class="text-danger">Name is
+                required</small>
+            </div>
+
+          </div>
+
+          <div class="form-group col-md-5">
+            <input type="text" class="form-control" placeholder="Reason" formControlName="reason"
+                   [class.is-invalid]="form.get('reason').invalid && form.get('reason').touched">
+
+            <div *ngIf="(reason.invalid && reason.touched) || reason.dirty"
+                 class="pl-3">
+              <small *ngIf="reason.errors?.required" class="text-danger">Reason is
+                required</small>
+
+            </div>
+          </div>
+        </div>
+
+
+        <div class="form-row justify-content-between">
+          <div class="form-group col-md-5">
+            <input type="text" class="form-control" placeholder="Email" formControlName="email"
+                   [class.is-invalid]="form.get('email').invalid && form.get('email').touched">
+
+            <div *ngIf="(email.invalid && email.touched) || email.dirty"
+                 class="pl-3">
+              <small *ngIf="email.errors?.required" class="text-danger">Email is
+                required</small>
+              <small *ngIf="email.errors?.email" class="text-danger">Please provide a valid email</small>
+
+            </div>
+
+            <div class="calendar">
+              <p-calendar class="first" (onSelect)="changeFormatStart($event)" placeholder="Select date"
+                          formControlName="date"></p-calendar>
+            </div>
+
+            <div class="row no-gutters justify-content-between">
+              <div class="start-time col">
+                <p-calendar class="first" [timeOnly]="true" [showSeconds]="false" (onSelect)="changeFormatStart($event)"
+                            placeholder="Start time" formControlName="startTime"></p-calendar>
+              </div>
+
+              <div class="end-time col">
+                <p-calendar placeholder="End time" [timeOnly]="true" [showSeconds]="false"
+                            (onSelect)="changeFormatEnd($event)" formControlName="endTime"></p-calendar>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group col-md-5">
+                          <textarea placeholder="Write your comment here..."
+                                    [class.is-invalid]="form.get('comment').invalid && form.get('comment').touched"
+                                    class="form-control text pt-4"
+                                    formControlName="comment"
+                                    rows="7"></textarea>
+            <div *ngIf="(comment.invalid && comment.touched) || comment.dirty" class="pl-3">
+              <small *ngIf="comment.errors?.required" class="text-danger">Comment is required</small>
+            </div>
+          </div>
+        </div>
+
+        <div class="row no-gutters justify-content-end">
+          <button class="btn-border" (click)="onSubmit()" [class.disabled]="form.invalid" [disabled]="form.invalid">Book a space</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<p-toast position="bottom-right"></p-toast>

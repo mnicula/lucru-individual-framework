@@ -1,0 +1,73 @@
+<div class="get-in-touch" #subscribe>
+  <img class="left" src="../../../../../assets/images/get1.svg" alt="">
+  <img class="right" src="../../../../../assets/images/get2.svg" alt="">
+  <div class="container">
+    <div class="title">
+      <h2>Get in touch</h2>
+    </div>
+
+    <div class="block">
+      <div class="row no-gutters justify-content-center">
+        <div class="col-md-5 col-0">
+          <div class="info">
+            <p><span></span>The FabLab team is pleased to inform you of all the important events that will take place.</p>
+            <p class="number">+373 (79) 682 495</p>
+            <ul class="socials row no-gutters">
+              <li class="facebook"><a href=""><i class="fab fa-facebook-f"></i></a></li>
+              <li class="linkedin"><a href=""><i class="fab fa-linkedin-in"></i></a></li>
+              <li class="whatsApp"><a href=""><i class="fab fa-whatsapp"></i></a></li>
+
+
+            </ul>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-12 offset-md-1 offset-0">
+          <div class="form">
+            <form [formGroup]="form">
+              <div class="form-group">
+                <input type="email" class="form-control" placeholder="Email" formControlName="email"
+                       [class.is-invalid]="form.get('email').invalid && form.get('email').touched">
+                <div *ngIf="(email.invalid && email.touched) || email.dirty" class="pl-3">
+                  <small *ngIf="email.errors?.required" class="text-danger">Email is required</small>
+                  <small *ngIf="email.errors?.email" class="text-danger">Please provide a valid email
+                    address</small>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <input type="text" class="form-control" placeholder="Subject" formControlName="subject"
+                       [class.is-invalid]="form.get('subject').invalid && form.get('subject').touched">
+                <div *ngIf="(subject.invalid && subject.touched) || subject.dirty" class="pl-3">
+                  <small *ngIf="subject.errors?.required" class="text-danger">Subject is required</small>
+                </div>
+              </div>
+
+              <div class="form-group">
+                          <textarea placeholder="Write Your Message Here..."
+                                    [class.is-invalid]="form.get('message').invalid && form.get('message').touched"
+                                    class="form-control text pt-4"
+                                    formControlName="message"
+                                    rows="6"></textarea>
+                <div *ngIf="(message.invalid && message.touched) || message.dirty" class="pl-3">
+                  <small *ngIf="message.errors?.required" class="text-danger">Message is required</small>
+                  <small *ngIf="message.errors?.minlength" class="text-danger">Message must have no less than 10 characters</small>
+                  <small *ngIf="message.errors?.maxlength" class="text-danger">Message must have no more than 156 characters</small>
+                </div>
+              </div>
+
+              <button class="btn-form" [class.disabled]="form.invalid" [disabled]="form.invalid" (click)="onSubmit()">Send</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="map">
+      <iframe
+        src="https://maps.google.com/maps?q=Moldova%20State%20University&t=&z=17&ie=UTF8&iwloc=&output=embed"
+        width="100%" height="400" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false"
+        tabindex="0"></iframe>
+    </div>
+  </div>
+</div>

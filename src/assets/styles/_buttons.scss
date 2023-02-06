@@ -1,0 +1,120 @@
+@import "colors";
+@import "breakpoints";
+
+.btn-normal {
+  width: 200px;
+  height: 50px;
+  background-color: $white;
+  color: $black;
+  border-radius: 30px;
+  box-shadow: 0 6px 20px -4px rgba(0, 0, 0, 0.15);
+  font-weight: bold;
+  outline: none;
+  cursor: pointer;
+  border: none;
+
+  @include media-breakpoint-down(md) {
+    width: 150px;
+  }
+}
+
+.btn-border {
+  width: 200px;
+  height: 50px;
+  cursor: pointer;
+  color: $white;
+  border: none;
+  margin-right: 10px;
+  background-color: #fdb200;
+  border-radius: 30px;
+  font-weight: bold;
+  float: right;
+  outline: none;
+
+  &.disabled{
+    opacity: 0.7;
+    cursor: not-allowed;
+  }
+
+  &.active{
+    color: #fdb200;
+    background-color: $white;
+    box-shadow: 0 6px 5px -4px rgba(0, 0, 0, 0.15);
+  }
+
+  @include media-breakpoint-down(md) {
+    width: 150px;
+  }
+  &.color{
+    background-color: #727bd1;
+    color: $white;
+  }
+}
+
+.btn-form {
+  background-color: #03B3B3;
+  border-radius: 30px;
+  font-weight: bold;
+  min-width: 160px;
+  height: 50px;
+  cursor: pointer;
+  outline: none;
+  text-transform: uppercase;
+  border: none;
+  color: $white;
+
+  &.disabled{
+    opacity: 0.7;
+    cursor: not-allowed;
+  }
+
+  &.create{
+    background-color: #6bd098;
+    width: 120px;
+    height: 40px;
+    font-weight: 400;
+    text-transform: capitalize;
+
+    &.disabled{
+      opacity: 0.7;
+      cursor: not-allowed;
+    }
+
+    i{
+      font-size: 13px;
+      padding-right: 5px;
+    }
+  }
+
+  &.create-comment-button{
+    font-size: 15px;
+    text-transform: inherit;
+  }
+
+  &.creation{
+    background-color: $white;
+    width: 120px;
+    height: 40px;
+    text-transform: capitalize;
+    box-shadow: 0 6px 5px -4px rgba(0, 0, 0, 0.15);
+    color: $black;
+    font-weight: 500;
+
+    i{
+      font-size: 13px;
+      padding-right: 5px;
+      color: $black;
+    }
+  }
+}
+.btn-article{
+  background-color: $white;
+  outline: none;
+  width: 200px;
+  height: 50px;
+  border-radius: 30px;
+  border: none;
+  font-family: Roboto, sans-serif;
+  font-weight: bold;
+  box-shadow: 0 6px 20px -4px rgba(0, 0, 0, 0.15);
+}

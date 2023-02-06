@@ -1,0 +1,145 @@
+@import "../../../../../styles";
+
+.testimonials {
+  position: absolute;
+  width: 100%;
+  min-height: 430px;
+  overflow: hidden;
+  height: 430px;
+  margin-bottom: 70px;
+  background-image: url("../../../../../assets/images/background.svg");
+
+  @include media-breakpoint-down(sm) {
+    position: relative;
+  }
+
+  .title {
+    text-align: center;
+    padding: 20px;
+
+    h2 {
+      color: $black;
+      text-transform: uppercase;
+      font-weight: bold;
+
+      @include media-breakpoint-down(sm) {
+        font-size: 25px;
+      }
+    }
+  }
+
+  .images {
+
+    .image {
+      text-align: center;
+      margin-top: 30px;
+
+      img {
+        width: 100px;
+        height: 100px;
+        margin: 0 61px;
+        border-radius: 50%;
+        box-shadow: 0 6px 5px -4px rgba(0, 0, 0, 0.15);
+        border: 1px solid $section;
+        background-color: $white;
+
+        @include media-breakpoint-down(lg) {
+          margin: 0 40px;
+          width: 80px;
+          height: 80px;
+        }
+
+        @include media-breakpoint-down(md) {
+          margin: 0 20px;
+          width: 70px;
+          height: 70px;
+        }
+
+        @include media-breakpoint-down(sm) {
+          display: block;
+          margin: 0 5px;
+        }
+
+        &.border {
+          border: 2px solid $gray !important;
+        }
+      }
+    }
+  }
+
+  .motto {
+    text-align: right;
+    padding: 40px 280px 0 150px;
+
+    @include media-breakpoint-down(lg) {
+      padding: 40px 200px 0 150px;
+    }
+
+    @include media-breakpoint-down(md) {
+      padding: 40px 150px 0 150px;
+    }
+    @include media-breakpoint-down(sm) {
+      padding: 20px 0;
+      text-align: center;
+    }
+
+    h6 {
+      color: $black;
+      font-weight: 400;
+      margin: 0;
+    }
+  }
+
+  .rector {
+    padding: 20px 280px 0 200px;
+    text-align: right;
+
+    @include media-breakpoint-down(lg) {
+      padding: 20px 200px 0 150px;
+    }
+    @include media-breakpoint-down(md) {
+      padding: 20px 150px 0 150px;
+    }
+    @include media-breakpoint-down(sm) {
+      padding: 20px 0;
+      text-align: center;
+    }
+
+    p {
+      color: $black;
+      margin: 0;
+
+      &:first-child {
+        text-transform: uppercase;
+        font-size: 26px;
+
+        @include media-breakpoint-down(md) {
+          font-size: 22px;
+        }
+      }
+    }
+
+    span {
+      font-weight: 300;
+      text-transform: uppercase;
+
+      @include media-breakpoint-down(md) {
+        font-size: 14px;
+      }
+    }
+  }
+}
+
+img {
+  width: 360px;
+  height: 500px;
+  float: right;
+
+  @include media-breakpoint-down(lg) {
+    width: 300px;
+    height: 450px;
+  }
+  @include media-breakpoint-down(sm) {
+    display: none;
+  }
+}

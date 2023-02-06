@@ -1,0 +1,59 @@
+<app-header></app-header>
+<div class="article" *ngIf="dataLoaded; else skeleton">
+  <div class="container">
+    <div class="row no-gutters justify-content-center">
+      <div class="back col-5">
+        <button class="btn-form creation" (click)="onBack()">
+          <i class="fas fa-chevron-left"></i>
+          Back
+        </button>
+      </div>
+
+      <div class="title col-7 row no-gutters">
+        <h2>{{event?.title}}</h2>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="description">
+        <p>
+          <ng-container *ngIf="event?.imageUrl">
+            <img [src]="event?.imageUrl" alt="">
+          </ng-container>
+
+          <ng-container *ngIf="!event?.imageUrl && dataLoaded">
+            <img src="../../../../../assets/images/default-image.jpg" alt="">
+          </ng-container>
+
+          {{event?.description}}
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #skeleton>
+  <div class="article padding">
+    <div class="container">
+      <div class="row no-gutters justify-content-center">
+        <div class="back col-5">
+          <button class="btn-form">
+
+          </button>
+        </div>
+
+        <div class="title col-7">
+          <h2></h2>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="description">
+          <img src="" alt="">
+          <p></p>
+          <h1></h1>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>
